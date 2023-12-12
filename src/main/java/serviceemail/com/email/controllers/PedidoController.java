@@ -17,10 +17,9 @@ public class PedidoController {
     @Autowired
     PedidoService servicePedido;
 
-
     @PostMapping("/cadastro")
-    public void cadastroPedido(Pedido pedido, Email email) {
-        servicePedido.cadastro(pedido, email);
+    public void cadastroPedido(Pedido pedido) {
+        servicePedido.cadastro(pedido);
     }
 
     @GetMapping("/lista")

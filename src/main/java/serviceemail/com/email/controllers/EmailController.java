@@ -21,13 +21,11 @@ public class EmailController {
     @Autowired
     EmailService emailService;
 
-    Pedido pedido;
-
     @PostMapping("/sendingEmail")
     public ResponseEntity<Email> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
         Email email = new Email();
         BeanUtils.copyProperties(emailDto, email);
-        emailService.sendEmail(email, pedido);
+        emailService.sendEmail(email);
         return new ResponseEntity<>(email, HttpStatus.CREATED);
     }
 }

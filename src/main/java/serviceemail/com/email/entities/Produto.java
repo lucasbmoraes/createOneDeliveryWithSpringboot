@@ -2,6 +2,8 @@ package serviceemail.com.email.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Produto {
 
@@ -12,14 +14,16 @@ public class Produto {
     @ManyToOne(cascade = CascadeType.ALL)
     private Pedido pedido;
     private int preco;
+    private int quantidade;
 
     public Produto() {
     }
-    public Produto(int id, String nome, Pedido pedido, int preco) {
+    public Produto(int id, String nome, Pedido pedido, int preco, int quantidade) {
         this.id = id;
         this.nome = nome;
         this.pedido = pedido;
         this.preco = preco;
+        this.quantidade = quantidade;
     }
 
     public void setId(int id) {
@@ -45,6 +49,12 @@ public class Produto {
     }
     public void setPreco(int preco) {
         this.preco = preco;
+    }
+    public int getQuantidade() {
+        return quantidade;
+    }
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
 }

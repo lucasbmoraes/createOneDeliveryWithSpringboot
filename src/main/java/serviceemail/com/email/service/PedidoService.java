@@ -19,10 +19,10 @@ public class PedidoService {
     EmailService serviceEmail;
 
 
-    public void cadastro(Pedido pedido, Email email) {
+    public void cadastro(Pedido pedido) {
         pedido.setData(LocalDate.now());
         pedidoRepository.save(pedido);
-        serviceEmail.sendEmail(email, pedido);
+        serviceEmail.buildEmail(pedido);
     }
 
     public List<Pedido> getObject() {

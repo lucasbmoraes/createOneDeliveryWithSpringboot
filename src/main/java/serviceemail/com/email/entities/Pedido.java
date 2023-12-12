@@ -14,22 +14,18 @@ public class Pedido {
     private int id;
     private LocalDate data;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
-    private List<Produto> produto;
+    List<Produto> produto;
     @ManyToOne(cascade = CascadeType.ALL)
     private Usuario usuario;
-    private int quantidade;
-
 
     public Pedido() {
     }
-    public Pedido(int id, LocalDate data, List<Produto> produto, Usuario usuario, int quantidade) {
+    public Pedido(int id, LocalDate data, List<Produto> produto, Usuario usuario) {
         this.id = id;
         this.data = data;
         this.produto = produto;
         this.usuario = usuario;
-        this.quantidade = quantidade;
     }
-
     public int getId() {
         return id;
     }
@@ -57,10 +53,5 @@ public class Pedido {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public int getQuantidade() {
-        return quantidade;
-    }
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
+
 }
