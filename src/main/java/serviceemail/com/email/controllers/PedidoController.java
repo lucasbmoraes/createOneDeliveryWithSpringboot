@@ -17,13 +17,10 @@ public class PedidoController {
     @Autowired
     PedidoService servicePedido;
 
-    @Autowired
-    EmailService serviceEmail;
 
     @PostMapping("/cadastro")
     public void cadastroPedido(Pedido pedido, Email email) {
-        servicePedido.cadastro(pedido);
-        serviceEmail.sendEmail(email);
+        servicePedido.cadastro(pedido, email);
     }
 
     @GetMapping("/lista")

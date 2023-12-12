@@ -13,13 +13,15 @@ public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    public void sendEmail(Email emailModel) {
+    Pedido pedido;
+
+    public void sendEmail(Email emailModel, Pedido pedido) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(emailModel.getEmailFrom());
             message.setTo(emailModel.getEmailTo());
-            message.setSubject(emailModel.getSubject());
-            message.setText(emailModel.getText());
+            message.setSubject("Pedido criado com sucesso!");
+            message.setText("O seu pedido de número" + pedido.getId() + "foi realizado com sucesso e logo chegará em sua residência.");
             emailSender.send(message);
         } catch (Exception e) {
             System.out.println(e);

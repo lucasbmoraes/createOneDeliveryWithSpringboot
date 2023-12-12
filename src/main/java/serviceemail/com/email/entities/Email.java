@@ -15,9 +15,9 @@ public class Email implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String ownerRef;
-    private String emailFrom;
-    private String emailTo;
+    private String ownerRef = "";
+    private String emailFrom = "luucaasm11@gmail.com";
+    private String emailTo = "luucaasm11@gmail.com";
     private String subject;
     @Column(columnDefinition = "Text")
     private String text;

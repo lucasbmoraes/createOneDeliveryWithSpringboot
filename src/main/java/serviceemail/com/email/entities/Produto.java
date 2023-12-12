@@ -11,7 +11,6 @@ public class Produto {
     private String nome;
     @ManyToOne(cascade = CascadeType.ALL)
     private Pedido pedido;
-
     private int preco;
 
     public Produto() {

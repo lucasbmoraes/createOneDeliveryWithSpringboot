@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import serviceemail.com.email.dto.EmailDto;
 import serviceemail.com.email.entities.Email;
+import serviceemail.com.email.entities.Pedido;
 import serviceemail.com.email.service.EmailService;
 
 @RestController
@@ -20,11 +21,13 @@ public class EmailController {
     @Autowired
     EmailService emailService;
 
-    @PostMapping("sendingEmail")
+    Pedido pedido;
+
+    @PostMapping("/sendingEmail")
     public ResponseEntity<Email> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
         Email email = new Email();
         BeanUtils.copyProperties(emailDto, email);
-        emailService.sendEmail(email);
+        emailService.sendEmail(email, pedido);
         return new ResponseEntity<>(email, HttpStatus.CREATED);
     }
 }

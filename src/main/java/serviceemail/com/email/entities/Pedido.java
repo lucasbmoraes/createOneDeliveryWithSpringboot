@@ -22,11 +22,12 @@ public class Pedido {
 
     public Pedido() {
     }
-    public Pedido(int id, LocalDate data, List<Produto> produto, Usuario usuario) {
+    public Pedido(int id, LocalDate data, List<Produto> produto, Usuario usuario, int quantidade) {
         this.id = id;
         this.data = data;
         this.produto = produto;
         this.usuario = usuario;
+        this.quantidade = quantidade;
     }
 
     public int getId() {
