@@ -23,8 +23,8 @@ public class EmailService {
         Email email = new Email();
         email.setEmailFrom("luucaasm11@gmail.com");
         email.setEmailTo(pedido.getUsuario().getEmail());
-        email.setSubject("Pedido número " + pedido.getId() + " criado com sucesso para " + pedido.getUsuario().getNome());
-        email.setText("\n Teste \n");
+        email.setSubject("Olá " + pedido.getUsuario().getNome() + "!" + " Seu pedido foi realizado com sucesso :)");
+        email.setText("\n O pedido " + pedido.getId() + " foi realizado e em breve sairá para entrega");
         sendEmail(email);
     }
     public void sendEmail(Email email) {
@@ -35,9 +35,6 @@ public class EmailService {
             message.setSubject(email.getSubject());
             message.setText(email.getText());
             emailSender.send(message);
-
-            System.out.println(email.toString());
-
             email.setStatusEmail(StatusEmail.SENT);
         } catch (MailException e) {
             email.setStatusEmail(StatusEmail.ERROR);
