@@ -3,6 +3,8 @@ package serviceemail.com.email.entities;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
@@ -13,18 +15,23 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate data;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
-    List<Produto> produto;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Produto produto;
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Usuario usuario;
 
+    private int quantidade;
+
     public Pedido() {
     }
-    public Pedido(int id, LocalDate data, List<Produto> produto, Usuario usuario) {
+    public Pedido(int id, LocalDate data, Produto produto, Usuario usuario, int quantidade) {
         this.id = id;
         this.data = data;
         this.produto = produto;
         this.usuario = usuario;
+        this.quantidade = quantidade;
     }
     public int getId() {
         return id;
@@ -41,17 +48,23 @@ public class Pedido {
     public void setData(LocalDate data) {
         this.data = data;
     }
-    public List<Produto> getProdutos() {
+    public Produto getProduto() {
         return produto;
     }
-    public void setProdutos(List<Produto> produtos) {
-        this.produto = produtos;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
     public Usuario getUsuario() {
         return usuario;
     }
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+    public int getQuantidade() {
+        return quantidade;
+    }
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
 }

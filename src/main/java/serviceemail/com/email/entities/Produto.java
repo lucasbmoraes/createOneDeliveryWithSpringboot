@@ -1,5 +1,6 @@
 package serviceemail.com.email.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,19 +12,17 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Pedido pedido;
-    private int preco;
-    private int quantidade;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "produto")
+    private List<Pedido> pedido;
 
     public Produto() {
     }
-    public Produto(int id, String nome, Pedido pedido, int preco, int quantidade) {
+    public Produto(int id, String nome, List<Pedido> pedido) {
         this.id = id;
         this.nome = nome;
         this.pedido = pedido;
-        this.preco = preco;
-        this.quantidade = quantidade;
     }
 
     public void setId(int id) {
@@ -38,23 +37,11 @@ public class Produto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public Pedido getPedido() {
+    public List<Pedido> getPedido() {
         return pedido;
     }
-    public void setPedido(Pedido pedido) {
+    public void setPedido(List<Pedido> pedido) {
         this.pedido = pedido;
-    }
-    public int getPreco() {
-        return preco;
-    }
-    public void setPreco(int preco) {
-        this.preco = preco;
-    }
-    public int getQuantidade() {
-        return quantidade;
-    }
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
     }
 
 }

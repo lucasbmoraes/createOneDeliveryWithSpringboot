@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import serviceemail.com.email.enums.StatusEmail;
 
 @Data
 @Entity
@@ -21,4 +22,19 @@ public class Email implements Serializable {
     private String subject;
     @Column(columnDefinition = "Text")
     private String text;
+    private StatusEmail statusEmail;
+
+    @Override
+    public String toString() {
+        return "Email{" +
+                "id=" + id +
+                ", ownerRef='" + ownerRef + '\'' +
+                ", emailFrom='" + emailFrom + '\'' +
+                ", emailTo='" + emailTo + '\'' +
+                ", subject='" + subject + '\'' +
+                ", text='" + text + '\'' +
+                ", statusEmail=" + statusEmail +
+                '}';
+    }
+
 }
